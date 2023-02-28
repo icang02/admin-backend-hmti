@@ -1,0 +1,31 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Artikel;
+use App\Models\KategoriArtikel;
+use Illuminate\Database\Seeder;
+
+class ArtikelSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $kategoriBerita = KategoriArtikel::all()->count();
+
+        for ($i = 0; $i < 123; $i++) {
+
+            $judul = fake()->sentence();
+            Artikel::create([
+                'kategori_berita_id' => rand(1, $kategoriBerita),
+                'judul' => $judul,
+                'slug' => str()->slug($judul),
+                'tanggal' => '2023-02-25',
+                'gambar' => null,
+                'content' => 'Lorem ipsum.',
+            ]);
+        }
+    }
+}
