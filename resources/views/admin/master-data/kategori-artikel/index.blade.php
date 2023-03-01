@@ -8,28 +8,19 @@
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Artikel <small>| {{ $kategoriArtikel }}</small></h3>
+          <h3>{{ $menu }} <small>| HMTI</small></h3>
           <div style="width: 79px; height: 3px; border-radius: 10px; background-color: #2A3F54;"></div>
         </div>
 
         <div class="title_right">
-          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            {{-- <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Telusuri</button>
-              </span>
-            </div> --}}
-          </div>
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"></div>
         </div>
       </div>
 
       <div class="clearfix"></div>
 
       <div class="d-flex justify-content-end mb-2">
-        <a href="{{ url('dashboard/artikel/' . str()->slug($kategoriArtikel) . '/create') }}" class="btn btn-primary"><i
-            class="fa fa-plus-square-o mr-1"></i>
-          Tambah Artikel</a>
+        <a href="#" class="btn btn-primary"><i class="fa fa-plus-square-o mr-1"></i> Tambah Data</a>
       </div>
       <div class="row">
         <div class="col-md-12 col-sm-12 ">
@@ -44,38 +35,34 @@
             </div>
             <div class="x_content">
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-7">
                   <div class="card-box table-responsive">
                     <p class="text-muted font-13 m-b-30">
-                      Menampilkan seluruh data artikel dengan kategori <code>{{ $kategoriArtikel }}</code>.
+                      Menampilkan seluruh data <code>{{ str()->lower($menu) }}</code>.
                     </p>
                     <table id="datatable" class="table table-striped table-bordered table-sm" style="width:100%">
                       <thead>
                         <tr>
                           <th>#</th>
                           <th>Aksi</th>
-                          <th>Judul</th>
-                          <th>Tanggal Post</th>
+                          <th>{{ $headerTable }}</th>
+                          @if (request()->is('dashboard/data-angkatan'))
+                            <th>Tahun</th>
+                          @endif
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach ($artikel as $art)
+                        @foreach ($kategoriArtikel as $kategori)
                           <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                              <a href="{{ url('dashboard/artikel/' . str()->slug($kategoriArtikel) . '/' . $art->slug) }}"
-                                class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i></a>
-                              <form
-                                action="{{ url('dashboard/artikel/' . str()->slug($kategoriArtikel) . '/' . $art->slug) }}"
-                                method="post" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button onclick="return confirm('Hapus artikel?')" type="submit"
-                                  class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
-                              </form>
+                              <button class="btn btn-sm btn-secondary"><i class="fa fa-edit"></i></button>
+                              <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
                             </td>
-                            <td>{{ $art->judul }}</td>
-                            <td>{{ $art->tanggal }}</td>
+                            <td>{{ $kategori->nama }}</td>
+                            @if (request()->is('dashboard/data-angkatan'))
+                              <td>{{ $kategori->tahun }}</td>
+                            @endif
                           </tr>
                         @endforeach
                       </tbody>

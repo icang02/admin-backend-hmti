@@ -1,5 +1,5 @@
 @php
-  $kategoriArtikel = App\Models\KategoriArtikel::orderBy('nama')->get();
+  $allKategori = App\Models\KategoriArtikel::orderBy('nama')->get();
 @endphp
 
 <div class="col-md-3 left_col menu_fixed">
@@ -31,10 +31,17 @@
         <ul class="nav side-menu">
           <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a></li>
 
-          <li><a><i class="fa fa-newspaper-o"></i> Artikel<span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              @forelse ($kategoriArtikel as $kategori)
-                <li><a href="{{ url("/dashboard/artikel/$kategori->slug") }}">{{ $kategori->nama }}</a></li>
+          <li class="{{ request()->is('dashboard/artikel*') ? 'active' : '' }}"><a><i class="fa fa-newspaper-o"></i>
+              Artikel<span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu" @if (request()->is('dashboard/artikel*')) style="display: block;" @endif>
+              @forelse ($allKategori as $kategori)
+                @if (request()->is('dashboard/artikel*'))
+                  <li class="{{ $kategoriArtikel == $kategori->slug ? 'active current-page' : '' }}"><a
+                      href="{{ url("/dashboard/artikel/$kategori->slug") }}">{{ $kategori->nama }}</a>
+                  </li>
+                @else
+                  <li><a href="{{ url("/dashboard/artikel/$kategori->slug") }}">{{ $kategori->nama }}</a></li>
+                @endif
               @empty
                 <li><a href="#">Belum ada kategori</a></li>
               @endforelse
@@ -66,9 +73,9 @@
         <ul class="nav side-menu">
           <li><a><i class="fa fa-windows"></i> Master Data <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="page_403.html">Kategori Artikel</a></li>
-              <li><a href="page_403.html">Data Jabatan</a></li>
-              <li><a href="page_403.html">Data Angkatan</a></li>
+              <li><a href="{{ url('dashboard/kategori-artikel') }}">Kategori Artikel</a></li>
+              <li><a href="{{ url('dashboard/data-jabatan') }}">Data Jabatan</a></li>
+              <li><a href="{{ url('dashboard/data-angkatan') }}">Data Angkatan</a></li>
             </ul>
           </li>
 

@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artikel extends Model
+class Jabatan extends Model
 {
     use HasFactory;
-    protected $table = 'artikel';
+    protected $table = 'jabatan';
     protected $guarded = [''];
-
-    // public function kategori_berita()
-    // {
-    //     return $this->belongsTo(KategoriBerita::class);
-    // }
+    public $timestamps = false;
 }

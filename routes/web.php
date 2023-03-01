@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\KategoriArtikelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,11 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard/artikel/{kategoriArtikel}',[ArtikelController::class, 'artikelByKategori']);
+Route::get('/dashboard/artikel/{kategoriArtikel}/create',[ArtikelController::class, 'create']);
+Route::post('/dashboard/artikel/{kategoriArtikel}/store',[ArtikelController::class, 'store']);
+Route::get('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'edit']);
+Route::put('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'update']);
+Route::delete('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'destroy']);
+
+Route::get('/dashboard/{menu}',[KategoriArtikelController::class, 'index']);
+

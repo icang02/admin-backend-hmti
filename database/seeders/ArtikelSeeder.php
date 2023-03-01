@@ -19,7 +19,7 @@ class ArtikelSeeder extends Seeder
 
             $judul = fake()->sentence();
             Artikel::create([
-                'kategori_berita_id' => rand(1, $kategoriBerita),
+                'kategori_artikel_id' => rand(1, $kategoriBerita),
                 'judul' => $judul,
                 'slug' => str()->slug($judul),
                 'tanggal' => '2023-02-25',

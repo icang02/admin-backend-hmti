@@ -12,8 +12,8 @@ class KategoriArtikel extends Model
     protected $guarded = [''];
     public $timestamps = false;
 
-    public function berita()
-    {
-        return $this->hasMany(Berita::class);
-    }
+    // public function berita()
+    // {
+    //     return $this->hasMany(Berita::class);
+    // }
 }
