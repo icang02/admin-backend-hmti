@@ -5,6 +5,12 @@
   @include('admin.components.tag-datatable')
 
   <div class="right_col" role="main">
+    {{-- toast message --}}
+    @if (session()->has('data'))
+      @include('admin.components.alert', session('data'))
+    @endif
+    {{-- end toast message --}}
+
     <div class="">
       <div class="page-title">
         <div class="title_left">
@@ -14,12 +20,6 @@
 
         <div class="title_right">
           <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-            {{-- <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Telusuri</button>
-              </span>
-            </div> --}}
           </div>
         </div>
       </div>

@@ -9,7 +9,18 @@
       <div class="page-title">
         <div class="title_left">
           <h3>{{ $menu }} <small>| HMTI</small></h3>
-          <div style="width: 79px; height: 3px; border-radius: 10px; background-color: #2A3F54;"></div>
+          @php
+            if ($menu == 'Kategori Artikel') {
+                $width = '189px';
+            }
+            if ($menu == 'Data Jabatan') {
+                $width = '167px';
+            }
+            if ($menu === 'Data Angkatan') {
+                $width = '184px';
+            }
+          @endphp
+          <div style="width: {{ $width }}; height: 3px; border-radius: 10px; background-color: #2A3F54;"></div>
         </div>
 
         <div class="title_right">

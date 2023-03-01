@@ -2,7 +2,7 @@
   $allKategori = App\Models\KategoriArtikel::orderBy('nama')->get();
 @endphp
 
-<div class="col-md-3 left_col menu_fixed">
+<div class="col-md-3 left_col menu_fixed pb-3">
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
       <a href="{{ url('/') }}" class="site_title"><i class="fa fa-paw"></i> <span>HMTI UHO</span></a>
@@ -50,15 +50,14 @@
 
           <li><a><i class="fa fa-sitemap"></i> Struktur Himpunan <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="general_elements.html">Visi & Misi</a></li>
+              <li><a href="{{ url('dashboard/visi-misi') }}">Visi & Misi</a></li>
               <li><a href="media_gallery.html">Anggota</a></li>
             </ul>
           </li>
 
           <li><a><i class="fa fa-file-text-o"></i> Arsip Surat <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="form.html">Surat Masuk</a></li>
-              <li><a href="form_advanced.html">Surat Keluar</a></li>
+              <li><a href="#">Coming Soon</a></li>
             </ul>
           </li>
 

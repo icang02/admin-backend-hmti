@@ -65,7 +65,12 @@ class ArtikelController extends Controller
             'gambar' => $namaGambar,
         ]);
 
-        return redirect("dashboard/artikel/$kategoriArtikel")->with('success', 'Artikel berhasil dipost.');
+        $data = [
+            'type' => 'success',
+            'title' => 'Sukses',
+            'success' => 'Artikel baru berhasil dipost.'
+        ];
+        return redirect("dashboard/artikel/$kategoriArtikel")->with(['data' => $data]);
     }
 
     public function edit($kategoriArtikel, Artikel $artikel)
@@ -107,76 +112,30 @@ class ArtikelController extends Controller
 
         $artikel->update([
             'judul' => ucfirst($request->judul),
-            // 'kategori_artikel_id' => $request->kategori_artikel_id,
             'slug' => str()->slug($request->judul),
             'tanggal' => $request->tanggal,
             'content' => $request->content,
             'gambar' => $namaGambar,
         ]);
 
-        return redirect("dashboard/artikel/$kategoriArtikel")->with('success', 'Artikel berhasil diupdate.');
+        $data = [
+            'type' => 'success',
+            'title' => 'Sukses',
+            'success' => 'Artikel berhasil diupdate.'
+        ];
+        return redirect("dashboard/artikel/$kategoriArtikel")->with( ['data' => $data] );
     }
 
     public function destroy($kategoriArtikel, Artikel $artikel)
     {
         if ($artikel->gambar != null) Storage::delete("public/artikel/$artikel->gambar");
         $artikel->delete();
-        return redirect("dashboard/artikel/$kategoriArtikel")->with('success', 'Artikel berhasil diupdate.');
+
+        $data = [
+            'type' => 'success',
+            'title' => 'Sukses',
+            'success' => 'Artikel berhasil dihapus.'
+        ];
+        return redirect("dashboard/artikel/$kategoriArtikel")->with(['data' => $data]);
     }
-
-    // public function index()
-    // {
-    //     // $data = Berita::with('kategori_berita')->where('kategori_berita_id', $id)->orderBy('tanggal')->get();
-    //     $data = Berita::latest()->get();
-    //     return BeritaResource::collection($data);
-    // }
-
-    // public function show(Berita $berita)
-    // {
-    //     return new BeritaResource($berita);
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'judul' => 'required',
-    //         'tanggal' => 'required',
-    //         'content' => 'required',
-    //         'kategori_berita_id' => 'required',
-    //     ]);
-
-    //     // check if validation fails
-    //     if ($validator->fails()) {
-    //         return response()->json($validator->errors(), 422);
-    //     }
-
-    //     $nGambar = null;
-    //     if ($request->hasFile('gambar')) {
-    //         $gambar = $request->file('gambar');
-    //         $nGambar = $gambar->hashName();
-    //         $gambar->storeAs('public/berita', $nGambar);
-    //     }
-
-    //     $berita = Berita::create([
-    //         'judul' => $request->judul,
-    //         'kategori_berita_id' => $request->kategori_berita_id,
-    //         'slug' => str()->slug($request->judul),
-    //         'tanggal' => $request->tanggal,
-    //         'gambar' => $nGambar,
-    //         'content' => $request->content
-    //     ]);
-
-    //     return new BeritaResource($berita);
-    // }
-
-    // public function destroy($id)
-    // {
-    //     $berita = Berita::findOrFail($id);
-    //     // dd($berita);
-    //     if ($berita->gambar != null) {
-    //         Storage::delete("public/berita/$berita->gambar");
-    //     }
-    //     $berita->delete();
-    //     return response()->json(['data' => 'Data berhasil dihapus.']);
-    // }
 }

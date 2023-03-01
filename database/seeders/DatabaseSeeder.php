@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             ArtikelSeeder::class,
             JabatanSeeder::class,
             AngkatanSeeder::class,
+            VisiMisiSeeder::class,
         ]);
     }
 }

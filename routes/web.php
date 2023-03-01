@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\KategoriArtikelController;
+use App\Http\Controllers\VisiMisiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,10 @@ Route::get('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelControl
 Route::put('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'update']);
 Route::delete('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'destroy']);
 
+Route::get('/dashboard/visi-misi',[VisiMisiController::class, 'index']);
+Route::post('/dashboard/visi-misi',[VisiMisiController::class, 'update']);
+
 Route::get('/dashboard/{menu}',[KategoriArtikelController::class, 'index']);
+
+
 

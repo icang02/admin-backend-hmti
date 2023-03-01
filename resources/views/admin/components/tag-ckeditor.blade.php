@@ -19,4 +19,30 @@
         console.error(err.stack);
       });
   </script>
+
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#editor1'), {
+        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+      })
+      .then(editor => {
+        window.editor = editor;
+      })
+      .catch(err => {
+        console.error(err.stack);
+      });
+  </script>
+
+  <script>
+    ClassicEditor
+      .create(document.querySelector('#editor2'), {
+        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+      })
+      .then(editor => {
+        window.editor = editor;
+      })
+      .catch(err => {
+        console.error(err.stack);
+      });
+  </script>
 @endpush
