@@ -22,7 +22,7 @@ class ArtikelSeeder extends Seeder
                 'kategori_artikel_id' => rand(1, $kategoriBerita),
                 'judul' => $judul,
                 'slug' => str()->slug($judul),
-                'tanggal' => '2023-02-25',
+                'tanggal' => fake()->date(),
                 'gambar' => null,
                 'content' => 'Lorem ipsum.',
             ]);

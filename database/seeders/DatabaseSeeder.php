@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             JabatanSeeder::class,
             AngkatanSeeder::class,
             VisiMisiSeeder::class,
+            AnggotaSeeder::class,
+            AlumniSeeder::class,
         ]);
     }
 }

@@ -51,7 +51,7 @@
           <li><a><i class="fa fa-sitemap"></i> Struktur Himpunan <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{ url('dashboard/visi-misi') }}">Visi & Misi</a></li>
-              <li><a href="media_gallery.html">Anggota</a></li>
+              <li><a href="{{ url('dashboard/anggota') }}">Anggota</a></li>
             </ul>
           </li>
 
@@ -61,7 +61,7 @@
             </ul>
           </li>
 
-          <li><a href="javascript:void(0)"><i class="fa fa-mortar-board"></i> Alumni</a></li>
+          <li><a href="{{ route('index-alumni') }}"><i class="fa fa-mortar-board"></i> Alumni</a></li>
 
           <li><a href="javascript:void(0)"><i class="fa fa-question-circle"></i> Pengaduan</a></li>
         </ul>

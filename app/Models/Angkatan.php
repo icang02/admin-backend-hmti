@@ -11,4 +11,9 @@ class Angkatan extends Model
     protected $table = 'angkatan';
     protected $guarded = [''];
     public $timestamps = false;
+    
+    public function alumni()
+    {
+        return $this->hasMany(Alumni::class);
+    }
 }

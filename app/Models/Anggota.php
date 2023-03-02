@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Jabatan extends Model
+class Anggota extends Model
 {
     use HasFactory;
-    protected $table = 'jabatan';
+    protected $table = 'anggota';
     protected $guarded = [''];
     public $timestamps = false;
 
-    public function anggota()
+    public function jabatan()
     {
-        return $this->hasOne(Anggota::class);
+        return $this->belongsTo(Jabatan::class);
     }
 }

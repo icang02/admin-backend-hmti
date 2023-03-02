@@ -11,8 +11,8 @@ class Artikel extends Model
     protected $table = 'artikel';
     protected $guarded = [''];
 
-    // public function kategori_berita()
-    // {
-    //     return $this->belongsTo(KategoriBerita::class);
-    // }
+    public function kategori_artikel()
+    {
+        return $this->belongsTo(KategoriArtikel::class);
+    }
 }

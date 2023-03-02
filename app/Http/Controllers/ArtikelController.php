@@ -52,8 +52,7 @@ class ArtikelController extends Controller
 
         $request->validate($rules);
         if ($request->hasFile('gambar')) {
-            $namaGambar = $request->file('gambar')->hashName();
-            $request->file('gambar')->storeAs('public/artikel', $namaGambar);
+            $namaGambar = $request->file('gambar')->store('artikel');
         }
 
         Artikel::create([
@@ -105,9 +104,8 @@ class ArtikelController extends Controller
 
         $request->validate($rules);
         if ($request->hasFile('gambar')) {
-            if ($artikel->gambar != null) Storage::delete("public/artikel/$artikel->gambar");
-            $namaGambar = $request->file('gambar')->hashName();
-            $request->file('gambar')->storeAs('public/artikel', $namaGambar);
+            if ($artikel->gambar != null) Storage::delete("$artikel->gambar");
+            $namaGambar = $request->file('gambar')->store('artikel');
         }
 
         $artikel->update([
@@ -128,7 +126,7 @@ class ArtikelController extends Controller
 
     public function destroy($kategoriArtikel, Artikel $artikel)
     {
-        if ($artikel->gambar != null) Storage::delete("public/artikel/$artikel->gambar");
+        if ($artikel->gambar != null) Storage::delete("$artikel->gambar");
         $artikel->delete();
 
         $data = [

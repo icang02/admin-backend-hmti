@@ -64,7 +64,7 @@
                 @csrf
                 <label for="fullname">Kata Sambutan * :</label>
                 <div>
-                  <textarea disabled name="kata_sambutan" id="editor">{{ old('kata_sambutan', $data[2]->isi) }}</textarea>
+                  <textarea name="kata_sambutan" id="editor">{{ old('kata_sambutan', $data[2]->isi) }}</textarea>
                 </div>
                 @error('kata_sambutan')
                   <div class="text-danger mt-1">{{ $message }}</div>
