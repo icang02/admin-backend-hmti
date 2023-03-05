@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             VisiMisiSeeder::class,
             AnggotaSeeder::class,
             AlumniSeeder::class,
+            HalamanDepanSeeder::class,
         ]);
     }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\HalamanDepanController;
 use App\Http\Controllers\KategoriArtikelController;
 use App\Http\Controllers\VisiMisiController;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +20,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.index');
+    return redirect('/dashboard');
 });
+
+Route::get('/dashboard', function () {
+    return view('admin.index');
+})->name('index-dashboard');
+
+// HALAMAN DEPAN
+Route::get('/dashboard/halaman-depan',[HalamanDepanController::class, 'index'])->name('halaman-depan');
 
 // MENU ARTIKEL
 Route::get('/dashboard/artikel/{kategoriArtikel}',[ArtikelController::class, 'artikelByKategori']);
@@ -44,6 +52,12 @@ Route::get('/dashboard/alumni',[AlumniController::class, 'index'])->name('index-
 Route::post('/dashboard/alumni',[AlumniController::class, 'store'])->name('store-alumni');
 Route::put('/dashboard/alumni/{alumni}',[AlumniController::class, 'update'])->name('update-alumni');
 Route::delete('/dashboard/alumni/{alumni}',[AlumniController::class, 'destroy'])->name('destroy-alumni');
+
+// MENU MASTER DATA
+// // Menu Kategori Artikel
+Route::post('/dashboard/kategori-artikel',[KategoriArtikelController::class, 'store'])->name('store-kategori_artikel');
+Route::put('/dashboard/kategori-artikel/{kategori}',[KategoriArtikelController::class, 'update'])->name('update-kategori_artikel');
+Route::delete('/dashboard/kategori-artikel/{kategori}',[KategoriArtikelController::class, 'destroy'])->name('destroy-kategori_artikel');
 
 Route::get('/dashboard/{menu}',[KategoriArtikelController::class, 'index']);
 

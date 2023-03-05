@@ -15,7 +15,7 @@ class ArtikelSeeder extends Seeder
     {
         $kategoriBerita = KategoriArtikel::all()->count();
 
-        for ($i = 0; $i < 123; $i++) {
+        for ($i = 0; $i < 10; $i++) {
 
             $judul = fake()->sentence();
             Artikel::create([
@@ -24,7 +24,7 @@ class ArtikelSeeder extends Seeder
                 'slug' => str()->slug($judul),
                 'tanggal' => fake()->date(),
                 'gambar' => null,
-                'content' => 'Lorem ipsum.',
+                'content' => fake()->paragraph(rand(6,10)),
             ]);
         }
     }

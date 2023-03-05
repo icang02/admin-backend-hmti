@@ -8,17 +8,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ArtikelResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
         if ($this->gambar == null) {
-            $gambar = request()->root() . '/img/artikel.jpg'; 
+            $gambar = request()->root() . "/img/artikel.jpg"; 
         } else {
-            $gambar = request()->root() . '/storage/' . $this->gambar;
+            $gambar = request()->root() . "/storage/$this->gambar";
         }
 
         if (request()->is('api/artikel') || request()->is('api/artikel/kategori*')) {

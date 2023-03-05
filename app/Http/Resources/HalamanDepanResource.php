@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class VisiMisiRosource extends JsonResource
+class HalamanDepanResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,6 @@ class VisiMisiRosource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'judul' => $this->nama,
-            'isi' => $this->isi,
-        ];
+        return parent::toArray($request);
     }
 }

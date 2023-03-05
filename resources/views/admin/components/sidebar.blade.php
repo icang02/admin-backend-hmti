@@ -29,7 +29,26 @@
       <div class="menu_section">
         <h3>Menu Utama</h3>
         <ul class="nav side-menu">
-          <li><a href="{{ url('/') }}"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="{{ route('index-dashboard') }}"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="{{ route('halaman-depan') }}"><i class="fa fa-home"></i> Halaman Depan</a></li>
+
+          {{-- <li><a><i class="fa fa-desktop"></i> Halaman Depan<span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="#level1_1">Background Slider</a>
+              <li><a href="#level1_1">Visi & Misi</a>
+              <li><a href="#level1_1">Foto</a>
+              <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                  <li class="sub_menu"><a href="level2.html">Level Two</a>
+                  </li>
+                  <li><a href="#level2_1">Level Two</a>
+                  </li>
+                  <li><a href="#level2_2">Level Two</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li> --}}
 
           <li class="{{ request()->is('dashboard/artikel*') ? 'active' : '' }}"><a><i class="fa fa-newspaper-o"></i>
               Artikel<span class="fa fa-chevron-down"></span></a>
