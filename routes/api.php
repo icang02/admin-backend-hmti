@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\AlumniController;
 use App\Http\Controllers\Api\ArtikelController;
-use App\Http\Resources\ArtikelResource;
+use App\Http\Resources\AlumniResource;
 use App\Http\Resources\HalamanDepanResource;
 use App\Http\Resources\JsonFormatResource;
-use App\Models\Artikel;
+use App\Models\Alumni;
+use App\Models\Angkatan;
 use App\Models\HalamanDepan;
 use App\Models\KategoriArtikel;
 use Illuminate\Http\Request;
@@ -15,32 +17,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// API ARTIKEL
-Route::get('artikel', [ArtikelController::class, 'index']);
-Route::get('artikel/{artikel:slug}', [ArtikelController::class, 'show']);
-Route::get('artikel/kategori/{kategori:slug}', [ArtikelController::class, 'artikelByKategori']);
-
-// API GET ALL ALL KATEGORI ARTIKEL
+// API GET ALL KATEGORI ARTIKEL
 Route::get('kategori-artikel', function() {
   $data = KategoriArtikel::orderBy('nama')->get();
   return new JsonFormatResource(true, 'Data kategori artikel.', $data);
 });
 
+// API GET ARTIKEL
+Route::get('artikel', [ArtikelController::class, 'index']);
+// get berdasarkan kategori artikel
+Route::get('artikel/{artikel:slug}', [ArtikelController::class, 'show']);
+// get berdasarkan judul artikel
+Route::get('artikel/kategori/{kategori:slug}', [ArtikelController::class, 'artikelByKategori']);
+
+// API GET DATA HALAMAN BERANDA
 Route::get('halaman-depan', function() {
-  $slider = HalamanDepan::where('kategori', 'slider')->get();
-  $tentang = HalamanDepan::where('kategori', 'tentang')->get()->first();
-  $kepengurusan = HalamanDepan::where('kategori', 'kepengurusan')->get()->first();
-  $visi = HalamanDepan::where('kategori', 'visi')->get()->first();
-  $misi = HalamanDepan::where('kategori', 'misi')->get();
-
-  $query = [
-    ['slider' => $slider],
-    ['tentang' => $tentang],
-    ['kepengurusan' => $kepengurusan],
-    ['visi' => $visi],
-    ['misi' => $misi]
-  ];
-
+  $query = HalamanDepan::orderBy('kategori')->get();
   $data = HalamanDepanResource::collection($query);
   return new JsonFormatResource(true, 'Data halaman depan.', $data);
 });
+
+// API GET DATA ANGKATAN
+Route::get('angkatan', function() {
+  $query = Angkatan::orderBy('tahun')->get();
+  return new JsonFormatResource(true, 'Data angkatan.', $query);
+});
+
+// API GET DATA ALUMNI
+Route::get('alumni', [AlumniController::class, 'index']);
+// berdasarkan tahun
+Route::get('alumni/{angkatan:tahun}', [AlumniController::class, 'getByTahun']);

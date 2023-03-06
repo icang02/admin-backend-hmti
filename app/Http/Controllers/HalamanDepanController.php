@@ -47,9 +47,10 @@ class HalamanDepanController extends Controller
         return back()->with(['data' => $data]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, HalamanDepan $id)
     {
-        $data = HalamanDepan::findOrFail($id);
+        // dd($id);
+        $data = $id;
         if ($request->kategori == 'foto kahim' || $request->kategori == 'foto wakahim' || $request->kategori ==  'slider') {
             $rules = [
                 'content' => 'image|mimes:jpg,jpeg,png|max:2048'
@@ -62,7 +63,10 @@ class HalamanDepanController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
 
-        $content = $data->content;
+        $content = $request->content;
+        if (!$request->content) $content = $data->content;
+
+        // check if request is image
         if ($request->hasFile('content')) {
             if ($request->kategori == 'foto kahim' || $request->kategori == 'foto wakahim') {
                 if ($data->content != null) Storage::delete($data->content);
