@@ -29,6 +29,9 @@ Route::get('/dashboard', function () {
 
 // HALAMAN DEPAN
 Route::get('/dashboard/halaman-depan',[HalamanDepanController::class, 'index'])->name('halaman-depan');
+Route::post('/dashboard/halaman-depan',[HalamanDepanController::class, 'store'])->name('store-halaman-depan');
+Route::put('/dashboard/halaman-depan/{id}',[HalamanDepanController::class, 'update'])->name('update-halaman-depan');
+Route::delete('/dashboard/halaman-depan/{id}',[HalamanDepanController::class, 'destroy'])->name('destroy-halaman-depan');
 
 // MENU ARTIKEL
 Route::get('/dashboard/artikel/{kategoriArtikel}',[ArtikelController::class, 'artikelByKategori']);

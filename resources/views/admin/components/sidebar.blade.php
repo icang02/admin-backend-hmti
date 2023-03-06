@@ -51,7 +51,7 @@
           </li> --}}
 
           <li class="{{ request()->is('dashboard/artikel*') ? 'active' : '' }}"><a><i class="fa fa-newspaper-o"></i>
-              Artikel<span class="fa fa-chevron-down"></span></a>
+              Artikel <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu" @if (request()->is('dashboard/artikel*')) style="display: block;" @endif>
               @forelse ($allKategori as $kategori)
                 @if (request()->is('dashboard/artikel*'))
@@ -67,9 +67,9 @@
             </ul>
           </li>
 
-          <li><a><i class="fa fa-sitemap"></i> Struktur Himpunan <span class="fa fa-chevron-down"></span></a>
+          <li><a><i class="fa fa-sitemap"></i> Struktur Organisasi <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{ url('dashboard/visi-misi') }}">Visi & Misi</a></li>
+              {{-- <li><a href="{{ url('dashboard/visi-misi') }}">Visi & Misi</a></li> --}}
               <li><a href="{{ url('dashboard/anggota') }}">Anggota</a></li>
             </ul>
           </li>
