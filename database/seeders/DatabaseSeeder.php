@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,12 @@ class DatabaseSeeder extends Seeder
             AnggotaSeeder::class,
             AlumniSeeder::class,
             HalamanDepanSeeder::class,
+        ]);
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin'),
         ]);
     }
 }

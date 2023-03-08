@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HalamanDepanController;
 use App\Http\Controllers\KategoriArtikelController;
 use App\Http\Controllers\VisiMisiController;
@@ -19,13 +20,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ROUTE HALAMAN LOGIN
+Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::post('login', [AuthController::class, 'authLogin'])->name('auth-login');
+Route::get('logout', [AuthController::class, 'logout'])->name('auth-logout')->middleware('auth');
+
+// REDIRECT
 Route::get('/', function () {
     return redirect('/dashboard');
-});
+})->middleware('auth');
 
+// ROUTE HOME DASHBOARD
 Route::get('/dashboard', function () {
     return view('admin.index');
-})->name('index-dashboard');
+})->name('index-dashboard')->middleware('auth');
 
 // HALAMAN DEPAN
 Route::get('/dashboard/halaman-depan',[HalamanDepanController::class, 'index'])->name('halaman-depan');
