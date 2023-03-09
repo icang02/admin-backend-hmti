@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HalamanDepanController;
 use App\Http\Controllers\KategoriArtikelController;
 use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\GaleriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,41 +37,44 @@ Route::get('/dashboard', function () {
 })->name('index-dashboard')->middleware('auth');
 
 // HALAMAN DEPAN
-Route::get('/dashboard/halaman-depan',[HalamanDepanController::class, 'index'])->name('halaman-depan');
-Route::post('/dashboard/halaman-depan',[HalamanDepanController::class, 'store'])->name('store-halaman-depan');
-Route::put('/dashboard/halaman-depan/{id}',[HalamanDepanController::class, 'update'])->name('update-halaman-depan');
-Route::delete('/dashboard/halaman-depan/{id}',[HalamanDepanController::class, 'destroy'])->name('destroy-halaman-depan');
+Route::get('/dashboard/halaman-depan',[HalamanDepanController::class, 'index'])->name('halaman-depan')->middleware('auth');
+Route::post('/dashboard/halaman-depan',[HalamanDepanController::class, 'store'])->name('store-halaman-depan')->middleware('auth');
+Route::put('/dashboard/halaman-depan/{id}',[HalamanDepanController::class, 'update'])->name('update-halaman-depan')->middleware('auth');
+Route::delete('/dashboard/halaman-depan/{id}',[HalamanDepanController::class, 'destroy'])->name('destroy-halaman-depan')->middleware('auth');
+
+// ROUTE GALLERY
+Route::get('/dashboard/galeri',[GaleriController::class, 'index'])->name('galeri')->middleware('auth');
 
 // MENU ARTIKEL
-Route::get('/dashboard/artikel/{kategoriArtikel}',[ArtikelController::class, 'artikelByKategori']);
-Route::get('/dashboard/artikel/{kategoriArtikel}/create',[ArtikelController::class, 'create']);
-Route::post('/dashboard/artikel/{kategoriArtikel}/store',[ArtikelController::class, 'store']);
-Route::get('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'edit']);
-Route::put('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'update']);
-Route::delete('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'destroy']);
+Route::get('/dashboard/artikel/{kategoriArtikel}',[ArtikelController::class, 'artikelByKategori'])->middleware('auth');
+Route::get('/dashboard/artikel/{kategoriArtikel}/create',[ArtikelController::class, 'create'])->middleware('auth');
+Route::post('/dashboard/artikel/{kategoriArtikel}/store',[ArtikelController::class, 'store'])->middleware('auth');
+Route::get('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'edit'])->middleware('auth');
+Route::put('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/artikel/{kategoriArtikel}/{artikel:slug}',[ArtikelController::class, 'destroy'])->middleware('auth');
 
 // MENU STRUKTUR HIMPUNAN
-Route::get('/dashboard/visi-misi',[VisiMisiController::class, 'index']);
-Route::post('/dashboard/visi-misi',[VisiMisiController::class, 'update']);
+Route::get('/dashboard/visi-misi',[VisiMisiController::class, 'index'])->middleware('auth');
+Route::post('/dashboard/visi-misi',[VisiMisiController::class, 'update'])->middleware('auth');
 // // Menu Anggota
-Route::get('/dashboard/anggota',[AnggotaController::class, 'index']);
-Route::post('/dashboard/anggota',[AnggotaController::class, 'store']);
-Route::put('/dashboard/anggota/{anggota}',[AnggotaController::class, 'update']);
-Route::delete('/dashboard/anggota/{anggota}',[AnggotaController::class, 'destroy']);
+Route::get('/dashboard/anggota',[AnggotaController::class, 'index'])->middleware('auth');
+Route::post('/dashboard/anggota',[AnggotaController::class, 'store'])->middleware('auth');
+Route::put('/dashboard/anggota/{anggota}',[AnggotaController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/anggota/{anggota}',[AnggotaController::class, 'destroy'])->middleware('auth');
 
 // MENU ALUMNI
-Route::get('/dashboard/alumni',[AlumniController::class, 'index'])->name('index-alumni');
-Route::post('/dashboard/alumni',[AlumniController::class, 'store'])->name('store-alumni');
-Route::put('/dashboard/alumni/{alumni}',[AlumniController::class, 'update'])->name('update-alumni');
-Route::delete('/dashboard/alumni/{alumni}',[AlumniController::class, 'destroy'])->name('destroy-alumni');
+Route::get('/dashboard/alumni',[AlumniController::class, 'index'])->name('index-alumni')->middleware('auth');
+Route::post('/dashboard/alumni',[AlumniController::class, 'store'])->name('store-alumni')->middleware('auth');
+Route::put('/dashboard/alumni/{alumni}',[AlumniController::class, 'update'])->name('update-alumni')->middleware('auth');
+Route::delete('/dashboard/alumni/{alumni}',[AlumniController::class, 'destroy'])->name('destroy-alumni')->middleware('auth');
 
 // MENU MASTER DATA
 // // Menu Kategori Artikel
-Route::post('/dashboard/kategori-artikel',[KategoriArtikelController::class, 'store'])->name('store-kategori_artikel');
-Route::put('/dashboard/kategori-artikel/{kategori}',[KategoriArtikelController::class, 'update'])->name('update-kategori_artikel');
-Route::delete('/dashboard/kategori-artikel/{kategori}',[KategoriArtikelController::class, 'destroy'])->name('destroy-kategori_artikel');
+Route::post('/dashboard/kategori-artikel',[KategoriArtikelController::class, 'store'])->name('store-kategori_artikel')->middleware('auth');
+Route::put('/dashboard/kategori-artikel/{kategori}',[KategoriArtikelController::class, 'update'])->name('update-kategori_artikel')->middleware('auth');
+Route::delete('/dashboard/kategori-artikel/{kategori}',[KategoriArtikelController::class, 'destroy'])->name('destroy-kategori_artikel')->middleware('auth');
 
-Route::get('/dashboard/{menu}',[KategoriArtikelController::class, 'index']);
+Route::get('/dashboard/{menu}',[KategoriArtikelController::class, 'index'])->middleware('auth');
 
 
 
