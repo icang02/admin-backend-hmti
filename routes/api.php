@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AlumniController;
 use App\Http\Controllers\Api\ArtikelController;
+use App\Http\Controllers\Api\StrukturOrganisasi;
 use App\Http\Resources\GaleriResource;
 use App\Http\Resources\HalamanDepanResource;
 use App\Http\Resources\JsonFormatResource;
@@ -54,3 +55,6 @@ Route::get('angkatan', function () {
 Route::get('alumni', [AlumniController::class, 'index']);
 // berdasarkan tahun
 Route::get('alumni/{angkatan:tahun}', [AlumniController::class, 'getByTahun']);
+
+// API ROUTE DATA STRUKTUR ORGANISASI
+Route::get('struktur-organisasi', [StrukturOrganisasi::class, 'index']);
