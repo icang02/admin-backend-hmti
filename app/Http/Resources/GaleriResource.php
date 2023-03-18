@@ -14,11 +14,17 @@ class GaleriResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        if ($this->gambar == null) {
+            $gambar = request()->root() . "/img/artikel.jpg";
+        } else {
+            $gambar = request()->root() . "/storage/$this->gambar";
+        }
+
         return [
             'id' => $this->id,
             'judul' => $this->judul,
             'deskripsi' => $this->deskripsi,
-            'gambar' => $request->root() . "/$this->gambar",
+            'gambar' => $gambar,
         ];
     }
 }

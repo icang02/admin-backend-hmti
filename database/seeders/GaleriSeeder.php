@@ -18,7 +18,7 @@ class GaleriSeeder extends Seeder
                 'judul' => fake()->title(),
                 'slug' => str()->slug(fake()->title()),
                 'deskripsi' => fake()->sentence(),
-                'gambar' => 'https://www.tataruang.id/wp-content/uploads/2022/12/pemandangan-alam-di-sekitar-rumah-780x470.jpg'
+                'gambar' => null,
             ]);
         }
     }
